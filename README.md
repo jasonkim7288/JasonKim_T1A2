@@ -7,7 +7,7 @@
 * [R6 - Features](#R6---Features)
 * [R7 - User interaction and experience](#R7---User-interaction-and-experience)
 * [R8 - Control flow](#R8---Control-flow)
-* [R9 - Implementation plan]
+* [R9 - Implementation plan](#R9---Implementation-plan)
 
 
 
@@ -43,11 +43,24 @@ There is also a special function that "File attachment" is available if wanted. 
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R7 - User interaction and experience
-## Playing instructions
-1. Change your working directory to: JasonKim_T1A2 -> lib
-2. Enter ruby gmail.rb
-3. When started, select the menu as below
-![](DecisionTree_JasonKim_T1A2.png)
+## Get started
+1. Your google account to be used MUST less secure app access as follows through the browser.<br />
+go to Google account -> Select "Manage your Google Account" -> Select "Security" -> Select "Turn on access(not recommended)" in "Less secure app access" -> Turn on "Allow less secure apps: "
+![Step 1](docs/GmailAccountSecuritySetting_1.png)<br />
+![Step 2](docs/GmailAccountSecuritySetting_2.png)<br />
+![Step 3](docs/GmailAccountSecuritySetting_3.png)<br />
+![Step 4](docs/GmailAccountSecuritySetting_4.png)<br />
+![Step 5](docs/GmailAccountSecuritySetting_5.png)<br />
+2. Change your working directory
+```
+[~]$ cd ~/Jason_T1A2/src
+```
+3. Run the script for ruby
+```
+[~/Jason_T1A2/src]$ ruby gmail.rb
+```
+4. When started, navigate the menu as below
+![Decision tree](docs/DecisionTree_JasonKim_T1A2.png)
 
 ## Installation
 1. If you don't already have Ruby installed, you can download it from and follow the installation instructions available [here](https://www.ruby-lang.org/en/documentation/installation/).
@@ -60,7 +73,7 @@ There is also a special function that "File attachment" is available if wanted. 
 
 # R8 - Control flow
 ## Flowchart
-![JasonKim_T1A2_diagram.png](JasonKim_T1A2_diagram.png)
+![JasonKim_T1A2_diagram.png](docs/JasonKim_T1A2_diagram.png)
 ## Pseudo code
 ```
 Begin
@@ -103,8 +116,14 @@ End
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R9 - Implementation plan
+## Outlines
+![trello start](docs/Trello_start.png)
+## Project management
+Platform : Trello<br />
+Project board : [http://trello.com/b/87EDzcri/jasonkimt1a2](http://trello.com/b/87EDzcri/jasonkimt1a2)
 
-Trallo needed
 
 [Go back](#table-of-contents)<br /><br /><br />
+
+
 
