@@ -46,10 +46,19 @@ loop do
             # Log in Gmail
             gmail = Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, "1234.5678j") do |gmail|
                 my_account.add(account_name) if !my_account.name.include?(account_name)
-                my_gmail = GmailManager.new(gmail)                
+                my_gmail_manager = GmailManager.new(gmail)                
                 goto_refresh = false;
 
-                ScreenControl.err_response("Log in succeed")
+                # Loop for mail list 
+                loop do
+                    puts "Loading the mail list..."
+                    # my_gmail_manager.load_mail_box
+                    # str_mail_list = my_gmail_manager.mail_list_to_string
+                    str_mail_list = ""
+                    ScreenControl.display_mail_list(my_gmail_manager, account_name, str_mail_list)
+
+                    gets
+                end
 
                 gmail.logout
                 break if goto_login
@@ -61,6 +70,7 @@ loop do
             end
 
             puts "Refreshing..."
+        # Excption handling. If it happens, go to the account list
         rescue Errno::ECONNRESET
             ScreenControl.err_response(MailConstant::STR_ERR_CONNECTION_CLOSED)
             break

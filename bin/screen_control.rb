@@ -62,4 +62,15 @@ module ScreenControl
         puts message
         @@prompt.keypress("\nPress space or enter to continue", keys: [:space, :return])
     end
+
+    def display_mail_list(gmail_manager, account_name, str_mail_list)
+        system("clear")
+        puts ScreenControl.title_to_string
+        puts ScreenControl.current_user_to_string(account_name)
+        puts gmail_manager.current_mail_label_to_string
+        #puts str_mail_list
+        #puts gmail_manager.pages_info_to_string
+    end
+
+    
 end
