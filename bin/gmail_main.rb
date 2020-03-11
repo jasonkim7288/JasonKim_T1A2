@@ -69,7 +69,10 @@ loop do
 
                         # Loop for mail detail
                         loop do
+                            # Display mail detail
                             ScreenControl.display_mail_detail(my_gmail_manager, account_name)
+
+                            #User input form mail detail
                             choice_made_mail_detail = ScreenControl.prompt_mail_detail_options
                             case choice_made_mail_detail
                             when 1  # Go back to the list
@@ -89,7 +92,7 @@ loop do
                         my_gmail_manager.goto_next_page
                         next
                     when 5  # Create a new mail
- 
+                        ScreenControl.create_new_mail(gmail)
                     when 6  # Refresh
                         goto_refresh = true;
                         break

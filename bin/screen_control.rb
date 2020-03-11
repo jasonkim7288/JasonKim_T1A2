@@ -3,6 +3,7 @@ require 'pastel'
 require 'colorize'
 require_relative '../lib/mail_constant'
 require_relative '../lib/gmail_manager'
+require_relative '../lib/new_mail'
 
 module ScreenControl
     @@font_standard = TTY::Font.new(:doom)
@@ -104,5 +105,24 @@ module ScreenControl
 
     def prompt_mail_detail_options
         return @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION, MailConstant::CHOICES_MAIL_DETAIL)
+    end
+
+    def create_new_mail(gmail)
+        new_mail = NewMail.new(gmail)
+
+        print "To : "
+        new_mail.mail_to = gets.chomp
+        print "Subject : "
+        new_mail.mail_subject = gets.chomp
+        print "Body (Input <br /> for a new line) : "
+        new_mail.mail_body = gets.chomp
+
+        if @@prompt.yes?(MailConstant::STR_ASK_SEND)
+            puts "Sending..."
+            
+            new_mail.send
+
+            @@prompt.keypress("Sending completed.\nPress space or enter to continue", keys: [:space, :return])
+        end 
     end
 end

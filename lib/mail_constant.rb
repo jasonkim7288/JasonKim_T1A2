@@ -8,9 +8,11 @@ class MailConstant
     STR_ERR_LOGIN_FAILED = "Log in failed. Please log in again".freeze
     STR_ERR_UNKNOWN = "Unknown error. Please log in again".freeze
     STR_MAILBOX_EMPTY = "Mailbox is empty".freeze
+    STR_ASK_ATTACH_FILE = "Would like to attach a file?".freeze
+    STR_ASK_SEND = "Do you really want to send?"
 
     CHOICES_MAIL_DETAIL = {"Go back to the list" => 1, "Log out" => 2, "Exit" => 3}.freeze
-    
+
     NUM_OF_ROWS_PREVIEW = 7.freeze
     FILE_NAME_ACCOUNT = "../account.db".freeze
     COLUMN_CENTER_WIDTH = 119.freeze
