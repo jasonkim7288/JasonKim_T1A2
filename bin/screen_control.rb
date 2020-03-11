@@ -111,11 +111,17 @@ module ScreenControl
         new_mail = NewMail.new(gmail)
 
         print "To : "
-        new_mail.mail_to = gets.chomp
+        new_mail.to = gets.chomp
         print "Subject : "
-        new_mail.mail_subject = gets.chomp
+        new_mail.subject = gets.chomp
         print "Body (Input <br /> for a new line) : "
-        new_mail.mail_body = gets.chomp
+        new_mail.body = gets.chomp
+
+        if @@prompt.yes?(MailConstant::STR_ASK_ATTACH_FILE)
+            puts "Current directory is #{File.dirname(__FILE__)}"
+            print "Input the file name with it's directory : "
+            new_mail.attach = gets.chomp
+        end
 
         if @@prompt.yes?(MailConstant::STR_ASK_SEND)
             puts "Sending..."
