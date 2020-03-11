@@ -1,10 +1,12 @@
 class MailConstant
-    CHOICES_ACCOUNT = {"Login with an existing account" => 1, "Login with another account" => 2, "Remove an account" => 3, "Exit" => 4}.freeze
     STR_NORMAL_QUESTION = "What would you like to do?".freeze
-    STR_INPUT_ACCOUNT_NAME = "Please input Gmail account name without '@gmail.com': "
-    STR_POSTFIX_GMAIL = "@gmail.com"
-    STR_ACCOUNT_LIST_EMPTY = "Account list is empty"
-
+    STR_INPUT_ACCOUNT_NAME = "Please input Gmail account name without '@gmail.com': ".freeze
+    STR_POSTFIX_GMAIL = "@gmail.com".freeze
+    STR_ACCOUNT_LIST_EMPTY = "Account list is empty".freeze
+    STR_ERR_CONNECTION_CLOSED = "Connection is closed. Please log in again".freeze
+    STR_ERR_NO_RESPONSE = "No response for the command. Please log in again".freeze
+    STR_ERR_LOGIN_FAILED = "Log in failed. Please log in again".freeze
+    STR_ERR_UNKNOWN = "Unknown error. Please log in again".freeze
 
     NUM_OF_ROWS_PREVIEW = 7.freeze
     FILE_NAME_ACCOUNT = "../account.db".freeze

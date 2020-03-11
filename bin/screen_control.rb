@@ -58,4 +58,8 @@ module ScreenControl
         end
     end
 
+    def err_response(message)
+        puts message
+        @@prompt.keypress("\nPress space or enter to continue", keys: [:space, :return])
+    end
 end

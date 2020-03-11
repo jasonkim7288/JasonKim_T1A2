@@ -1,7 +1,9 @@
 require 'tty-prompt'
+require 'gmail'
 
 require_relative '../lib/account'
 require_relative '../lib/mail_constant'
+require_relative '../lib/gmail_manager'
 require_relative 'screen_control'
 
 include ScreenControl
@@ -34,5 +36,43 @@ loop do
     else
         ScreenControl.invalid_input
         next
+    end
+
+    puts "\nLogging in...."
+    goto_login = false;
+
+    loop do
+        begin
+            # Log in Gmail
+            gmail = Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, "1234.5678j") do |gmail|
+                my_account.add(account_name) if !my_account.name.include?(account_name)
+                my_gmail = GmailManager.new(gmail)                
+                goto_refresh = false;
+
+                ScreenControl.err_response("Log in succeed")
+
+                gmail.logout
+                break if goto_login
+            end
+
+            if goto_login
+                goto_login = false
+                break
+            end
+
+            puts "Refreshing..."
+        rescue Errno::ECONNRESET
+            ScreenControl.err_response(MailConstant::STR_ERR_CONNECTION_CLOSED)
+            break
+        rescue Net::IMAP::NoResponseError
+            ScreenControl.err_response(MailConstant::STR_ERR_NO_RESPONSE)
+            break
+        rescue Net::IMAP::BadResponseError
+            ScreenControl.err_response(MailConstant::STR_ERR_LOGIN_FAILED)
+            break
+        # rescue Exception
+        #     ScreenControl.err_response(MailConstant::STR_ERR_UNKNOWN)
+        #     break
+        end
     end
 end
