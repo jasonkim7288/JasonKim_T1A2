@@ -2,6 +2,7 @@ require 'tty-font'
 require 'pastel'
 require 'colorize'
 require_relative '../lib/mail_constant'
+require_relative '../lib/gmail_manager'
 
 module ScreenControl
     @@font_standard = TTY::Font.new(:doom)
@@ -68,20 +69,39 @@ module ScreenControl
         puts ScreenControl.title_to_string
         puts ScreenControl.current_user_to_string(account_name)
         puts gmail_manager.current_mail_label_to_string
-        #puts str_mail_list
-        #puts gmail_manager.pages_info_to_string
+        puts str_mail_list
+        puts gmail_manager.pages_info_to_string
     end
 
     def prompt_mail_list_options(gmail_manager)
         return @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION) do |menu|
-            menu.choice "Change label", 1
-            # gmail_manager.mailbox.length == 0 ? (menu.choice "View the mail", 2, disabled: "(N/A)") : (menu.choice "View the mail", 2)
-            # gmail_manager.current_page <= 1 ? (menu.choice "Previous page", 3, disabled: "(N/A)") : (menu.choice "Previous page", 3)
-            # gmail_manager.current_page >= gmail_manager.total_page ? (menu.choice "Next page", 4, disabled: "(N/A)") : (menu.choice "Next page", 4)
+            gmail_manager.mailbox.length == 0 ? (menu.choice "View the mail", 2, disabled: "(N/A)") : (menu.choice "View the mail", 2)
+            gmail_manager.current_page <= 1 ? (menu.choice "Previous page", 3, disabled: "(N/A)") : (menu.choice "Previous page", 3)
+            gmail_manager.current_page >= gmail_manager.total_page ? (menu.choice "Next page", 4, disabled: "(N/A)") : (menu.choice "Next page", 4)
             menu.choice "Create a new mail", 5
             menu.choice "Refresh", 6
             menu.choice "Log out", 7
             menu.choice "Exit", 8
         end
+    end
+
+    def prompt_mail_select(gmail_manager)
+        if gmail_manager.start_index != gmail_manager.end_index
+            gmail_manager.current_mail_index = @@prompt.ask("Input the mail No: #{gmail_manager.start_index + 1}~#{gmail_manager.end_index + 1}?") {|q| q.in("#{gmail_manager.start_index + 1}-#{gmail_manager.end_index + 1}")}.to_i - 1
+        else
+            gmail_manager.current_mail_index = gmail_manager.start_index
+        end
+    end
+
+    def display_mail_detail(gmail_manager, account_name)
+        system("clear")
+        puts ScreenControl.title_to_string
+        puts ScreenControl.current_user_to_string(account_name)
+        puts gmail_manager.current_mail_label_to_string
+        puts gmail_manager.mail_detail_to_string
+    end
+
+    def prompt_mail_detail_options
+        return @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION, MailConstant::CHOICES_MAIL_DETAIL)
     end
 end

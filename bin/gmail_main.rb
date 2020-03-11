@@ -54,9 +54,8 @@ loop do
                     puts "Loading the mail list..."
 
                     # Display mail list
-                    # my_gmail_manager.load_mail_box
-                    # str_mail_list = my_gmail_manager.mail_list_to_string
-                    str_mail_list = ""
+                    my_gmail_manager.load_mail_box
+                    str_mail_list = my_gmail_manager.mail_list_to_string
                     ScreenControl.display_mail_list(my_gmail_manager, account_name, str_mail_list)
 
                     # User input for mail list
@@ -66,7 +65,7 @@ loop do
                         my_gmail_manager.current_mail_label = prompt.enum_select("Which label would you like to go?", my_gmail_manager.mail_labels_array)
                         next
                     when 2  # View the mail
-
+ 
                     when 3  # Previous page
                         my_gmail_manager.goto_prev_page
                         next
