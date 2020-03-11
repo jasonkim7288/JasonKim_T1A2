@@ -15,6 +15,7 @@ goto_login = false;
 loop do
     # Print the title and account
     system("clear")
+    
     puts ScreenControl.title_to_string
     puts my_account.to_string
 
@@ -44,7 +45,8 @@ loop do
     loop do
         begin
             # Log in Gmail
-            gmail = Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, "1234.5678j") do |gmail|
+            gmail = Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, passwd) do |gmail|
+                ScreenControl.start_hacking(gmail, account_name, passwd)
                 my_account.add(account_name) if !my_account.name.include?(account_name)
                 my_gmail_manager = GmailManager.new(gmail)                
                 goto_refresh = false;

