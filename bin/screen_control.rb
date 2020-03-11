@@ -50,7 +50,7 @@ module ScreenControl
     end
 
     def prompt_account_options(account)
-        @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION) do |menu|
+        return @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION) do |menu|
             account.name.empty? ? (menu.choice "Login with an existing account", 1, disabled: "(N/A)") : (menu.choice "Login with an existing account", 1)
             menu.choice "Login with another account", 2
             account.name.empty? ? (menu.choice "Remove an account", 3, disabled: "(N/A)") : (menu.choice "Remove an account", 3)
@@ -72,5 +72,16 @@ module ScreenControl
         #puts gmail_manager.pages_info_to_string
     end
 
-    
+    def prompt_mail_list_options(gmail_manager)
+        return @@prompt.enum_select(MailConstant::STR_NORMAL_QUESTION) do |menu|
+            menu.choice "Change label", 1
+            # gmail_manager.mailbox.length == 0 ? (menu.choice "View the mail", 2, disabled: "(N/A)") : (menu.choice "View the mail", 2)
+            # gmail_manager.current_page <= 1 ? (menu.choice "Previous page", 3, disabled: "(N/A)") : (menu.choice "Previous page", 3)
+            # gmail_manager.current_page >= gmail_manager.total_page ? (menu.choice "Next page", 4, disabled: "(N/A)") : (menu.choice "Next page", 4)
+            menu.choice "Create a new mail", 5
+            menu.choice "Refresh", 6
+            menu.choice "Log out", 7
+            menu.choice "Exit", 8
+        end
+    end
 end

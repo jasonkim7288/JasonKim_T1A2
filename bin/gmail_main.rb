@@ -52,12 +52,40 @@ loop do
                 # Loop for mail list 
                 loop do
                     puts "Loading the mail list..."
+
+                    # Display mail list
                     # my_gmail_manager.load_mail_box
                     # str_mail_list = my_gmail_manager.mail_list_to_string
                     str_mail_list = ""
                     ScreenControl.display_mail_list(my_gmail_manager, account_name, str_mail_list)
 
-                    gets
+                    # User input for mail list
+                    choice_made_mail_list = ScreenControl.prompt_mail_list_options(my_gmail_manager)
+                    case choice_made_mail_list
+                    when 1  # Change label
+                        my_gmail_manager.current_mail_label = prompt.enum_select("Which label would you like to go?", my_gmail_manager.mail_labels_array)
+                        next
+                    when 2  # View the mail
+
+                    when 3  # Previous page
+                        my_gmail_manager.goto_prev_page
+                        next
+                    when 4  # Next page
+                        my_gmail_manager.goto_next_page
+                        next
+                    when 5  # Create a new mail
+ 
+                    when 6  # Refresh
+                        goto_refresh = true;
+                        break
+                    when 7  # Log out
+                        goto_login = true;
+                        break
+                    when 8  # Exit
+                        puts ScreenControl.bye_to_string
+                        exit
+                    else
+                    end
                 end
 
                 gmail.logout
