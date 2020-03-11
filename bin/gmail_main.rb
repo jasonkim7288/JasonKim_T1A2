@@ -65,7 +65,23 @@ loop do
                         my_gmail_manager.current_mail_label = prompt.enum_select("Which label would you like to go?", my_gmail_manager.mail_labels_array)
                         next
                     when 2  # View the mail
- 
+                        ScreenControl.prompt_mail_select(my_gmail_manager)
+
+                        # Loop for mail detail
+                        loop do
+                            ScreenControl.display_mail_detail(my_gmail_manager, account_name)
+                            choice_made_mail_detail = ScreenControl.prompt_mail_detail_options
+                            case choice_made_mail_detail
+                            when 1  # Go back to the list
+                                break
+                            when 2  #Log out
+                                goto_login = true
+                                break
+                            when 3  # Exit
+                                puts ScreenControl.bye_to_string
+                                exit
+                            end
+                        end
                     when 3  # Previous page
                         my_gmail_manager.goto_prev_page
                         next

@@ -67,4 +67,20 @@ class GmailManager
         table_pages = TTY::Table.new [{value: "<< #{@current_page} / #{@total_page} >>", alignment: :center}], [['']]
         return table_pages.render(:basic, column_widths: [MailConstant::COLUMN_CENTER_WIDTH])
     end
+
+    def mail_detail_to_string
+        return "Mailbox is empty" if @mailbox.length == 0
+        return "Mail content is empty" if mailbox[@current_mail_index] == nil
+        str_from = @mailbox[@current_mail_index].message.from != nil ? (@mailbox[@current_mail_index].message.from.to_s.delete "[" "]" "\"") : ""
+        str_subject = @mailbox[@current_mail_index].message.subject != nil ? @mailbox[@current_mail_index].message.subject.to_s : ""
+        str_body = @mailbox[@current_mail_index].message.body != nil ? @mailbox[@current_mail_index].message.body.to_s.slice(0, MailConstant::COLUMN_MAIL_DETAIL_CONTENT_SIZE * 30) : ""
+        str_body = HtmlMassage.text(str_body)
+
+        table = TTY::Table.new header: [{value: "From", alignment: :center}, {value: str_from}],
+                                rows: [[{value: "Subject", alignment: :center}, {value: str_subject}],
+                                        [{value: "Body", alignment: :center}, {value: str_body}]]
+        return table.render(:unicode, column_widths: [MailConstant::COLUMN_MAIL_DETAIL_HEADER_SIZE, MailConstant::COLUMN_MAIL_DETAIL_CONTENT_SIZE], multiline: true, padding: [0, 1]) do |renderer|
+            renderer.border.separator = :each_row
+        end
+    end
 end
