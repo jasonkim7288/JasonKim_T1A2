@@ -8,6 +8,7 @@
 * [R7 - User interaction and experience](#R7---User-interaction-and-experience)
 * [R8 - Control flow](#R8---Control-flow)
 * [R9 - Implementation plan](#R9---Implementation-plan)
+* [R10 - Installation guide and requirement](#R10---Installation-guide-and-requirement)
 
 
 
@@ -122,8 +123,10 @@ End
 Platform : Trello<br />
 Project board : [http://trello.com/b/87EDzcri/jasonkimt1a2](http://trello.com/b/87EDzcri/jasonkimt1a2)
 
-
 [Go back](#table-of-contents)<br /><br /><br />
 
+# R10 - Installation guide and requirement
 
 
+
+[Go back](#table-of-contents)<br /><br /><br />
