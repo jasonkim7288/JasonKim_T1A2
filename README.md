@@ -170,5 +170,6 @@ gem install bundler
 - tty-font
 - pastel
 - colorize
+- test-unit
 
 [Go back](#table-of-contents)<br /><br /><br />
