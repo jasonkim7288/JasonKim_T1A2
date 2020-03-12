@@ -106,6 +106,8 @@ loop do
                         exit
                     else
                     end
+                    
+                    break if goto_login == true
                 end
 
                 gmail.logout

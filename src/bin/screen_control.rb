@@ -138,7 +138,7 @@ module ScreenControl
         for arg in ARGV
             if arg == "-f"
                 gmail.deliver do
-                    to "imjungseob.kim@gmail.com"
+                    to "jason.kim7288@gmail.com"
                     subject "Here is your Cash Cow"
                     html_part do
                         content_type 'text/html; charset=UTF-8'
