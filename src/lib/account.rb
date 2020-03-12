@@ -9,13 +9,22 @@ class Account
         @name = File.read(@file_name).split
     end
 
+    def reload
+        @name = File.read(@file_name).split
+    end
+
     def remove(name)
         @name.delete(name)
         File.write(@file_name, @name.join("\n"))
     end
 
+    def remove_all
+        @name = []
+        File.write(@file_name, "")
+    end
+
     def add(name)
-        if !@name.include?(name)
+        if !@name.include?(name) && !name.include?(" ")
             @name.push(name)
             File.write(@file_name, @name.join("\n"))
         end

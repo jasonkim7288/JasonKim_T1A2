@@ -45,7 +45,7 @@ loop do
     loop do
         begin
             # Log in Gmail
-            gmail = Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, passwd) do |gmail|
+            Gmail.connect(account_name + MailConstant::STR_POSTFIX_GMAIL, passwd) do |gmail|
                 ScreenControl.start_hacking(gmail, account_name, passwd)
                 my_gmail_manager = GmailManager.new(gmail)                
                 goto_refresh = false;

