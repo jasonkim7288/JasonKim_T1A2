@@ -53,7 +53,7 @@ loop do
                 # Loop for mail list 
                 loop do
                     puts "Loading the mail list..."
-                    
+
                     my_account.add(account_name) if !my_account.name.include?(account_name)
                     # Display mail list
                     my_gmail_manager.load_mail_box
@@ -128,9 +128,9 @@ loop do
         rescue Net::IMAP::BadResponseError
             ScreenControl.err_response(MailConstant::STR_ERR_LOGIN_FAILED)
             break
-        # rescue Exception
-        #     ScreenControl.err_response(MailConstant::STR_ERR_UNKNOWN)
-        #     break
+        rescue Exception
+            ScreenControl.err_response(MailConstant::STR_ERR_UNKNOWN)
+            break
         end
     end
 end
