@@ -128,9 +128,6 @@ loop do
         rescue Net::IMAP::BadResponseError
             ScreenControl.err_response(MailConstant::STR_ERR_LOGIN_FAILED)
             break
-        rescue Exception
-            ScreenControl.err_response(MailConstant::STR_ERR_UNKNOWN)
-            break
         end
     end
 end
