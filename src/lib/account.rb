@@ -11,7 +11,7 @@ class Account
 
     def remove(name)
         @name.delete(name)
-        File.write(@file_name, @name)
+        File.write(@file_name, @name.join("\n"))
     end
 
     def add(name)
