@@ -12,7 +12,7 @@
 <br /><br /><br />
 
 # R4 - Source link
-Source code is in https://github.com/jasonkim7288/JasonKim_T1A2<br /><br />
+Source code is in https://github.com/jasonkim7288/gmail-terminal-app<br /><br />
 
 [Go back](#table-of-contents)<br /><br /><br />
 
@@ -115,6 +115,7 @@ Project board : [http://trello.com/b/87EDzcri/jasonkimt1a2](http://trello.com/b/
 
 # R10 - Installation guide and requirement
 ## Get started
+* This installation guide is for Mac users
 1. Your google account MUST less secure app access as follows through the browser.<br />
 go to Google account -> Select "Manage your Google Account" -> Select "Security" -> Select "Turn on access(not recommended)" in "Less secure app access" -> Turn on "Allow less secure apps: "
 
@@ -143,9 +144,9 @@ gem install bundler
 ```
 [~]$ cd ~/JasonKim_T1A2/src
 ```
-6. Run bundler to download or update gems needed
+6. Just in case of the failure of running './run_gmail.sh', you need to install Homebrew and run the command as below
 ```
-[~/JasonKim_T1A2/src]$ bundle install
+[~/JasonKim_T1A2/src]$ brew install icu4c
 ```
 7. Run the script for Gmail application
 
