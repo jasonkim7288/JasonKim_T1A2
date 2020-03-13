@@ -111,6 +111,7 @@ module ScreenControl
 
     def create_new_mail(gmail)
         new_mail = NewMail.new(gmail)
+        want_to_attach = false
 
         print "To : "
         new_mail.to = STDIN.gets.chomp
@@ -123,12 +124,13 @@ module ScreenControl
             puts "Current directory is #{File.dirname(__FILE__)}"
             print "Input the file name with it's directory : "
             new_mail.attach = STDIN.gets.chomp
+            want_to_attach = true
         end
 
         if @@prompt.yes?(MailConstant::STR_ASK_SEND)
             puts "Sending..."
             
-            new_mail.send
+            new_mail.send(want_to_attach)
 
             @@prompt.keypress("Sending completed.\nPress space or enter to continue", keys: [:space, :return])
         end 

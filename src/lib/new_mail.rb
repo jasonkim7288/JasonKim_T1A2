@@ -9,7 +9,7 @@ class NewMail
         @attach = ""
     end
 
-    def send
+    def send(want_to_attach)
         mail_to = @to
         mail_subject = @subject
         mail_body = @body
@@ -26,6 +26,7 @@ class NewMail
                 add_file mail_attach
             end
         else
+            puts "Failed to load the file, but sending it anyway" if want_to_attach
             @gmail.deliver do
                 to mail_to
                 subject mail_subject
