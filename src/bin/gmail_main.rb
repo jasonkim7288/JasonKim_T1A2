@@ -30,7 +30,8 @@ loop do
         passwd = ScreenControl.input_password
     when 3  # Remove an account
         account_name = ScreenControl.get_account_name_from_select(my_account)
-        next if ScreenControl.ask_and_remove(my_account, account_name)
+        ScreenControl.ask_and_remove(my_account, account_name)
+        next
     when 4  # Exit
         puts ScreenControl.bye_to_string
         exit
@@ -106,7 +107,7 @@ loop do
                         exit
                     else
                     end
-                    
+
                     break if goto_login == true
                 end
 
