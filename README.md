@@ -12,7 +12,7 @@
 <br /><br /><br />
 
 # R4 - Source link
-Source code is in https://github.com/jasonkim7288/gmail-terminal-app<br /><br />
+Source code is in https://github.com/jasonkim7288/ruby_gmail_terminal_app<br /><br />
 
 [Go back](#table-of-contents)<br /><br /><br />
 
